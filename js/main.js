@@ -5,7 +5,7 @@
 'use strict';
 
 $(function () {
-    //当没有resiize事件时让window对象触发一下resize()对象;
+    //当没有resize事件时让window对象触发一下resize()对象;
     function resize(){
         var screen_width = $(window).width();
         $('.carousel-inner > .item').each(function (i, item) {
@@ -13,17 +13,19 @@ $(function () {
                 $(this).empty();
                 $(this).css({'backgroundImage': 'url('+$(item).data('imge-lg')+')'});
             }else{
-                $(this).html('<images src="'+$(item).data('imge-xs')+'"/>');
+                /*'<img src="'+$(item).data('imge-xs')+'"/>'*/
+                $(this).html('<img src="'+$(this).data('imge-xs')+'"/>');
             }
         })
-    };
+    }
     $(window).on('resize',resize).trigger('resize');
+
     var $tabsWidth=0;
     var $tabs = $('#products .tabs-box .nav').children();
     $tabs.each(function(i,element){
         $tabsWidth+=$(element).width();
     });
-    console.log($tabsWidth);
+
     $('#products .tabs-box .nav').css('width',$tabsWidth);
     $('#news .container .nav li').on('click',function(){
         $('#news .container .new-title h4').empty();
